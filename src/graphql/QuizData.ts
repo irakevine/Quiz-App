@@ -1,8 +1,8 @@
-import { nullable, objectType } from "nexus";
-
+import {  objectType } from "nexus";
+;  
 
 export const QuizData = objectType({
-    name: "Answer", 
+    name: "QuizData", 
     definition(t): any{ 
         t.nonNull.int("id");  
         t.nonNull.string("question");
@@ -11,4 +11,5 @@ export const QuizData = objectType({
 
     },
 });
+
 

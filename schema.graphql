@@ -2,13 +2,13 @@
 ### Do not make changes to this file directly
 
 
-type Answer {
+type Query {
+  ok: Boolean!
+}
+
+type QuizData {
   correctAnswer: String!
   id: Int!
   incorrectAnswers: [String!]
   question: String!
-}
-
-type Query {
-  ok: Boolean!
 }
