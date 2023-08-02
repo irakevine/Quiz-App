@@ -37,8 +37,9 @@ export const QuizDataQuery = extendType({  // 2
     definition(t) {
         t.nonNull.list.nonNull.field("feed", {   // 3
             type: "QuizData",
-            resolve(parent, args, context, info) {    // 4
-                return quizdatas;
+            resolve(parent, args, context, info) { 
+                return context.prisma.quizData.findMany();    // 4
+                
             },
         });
     },
@@ -55,19 +56,18 @@ export const QuizDataMutation = extendType({  // 1
             },
             
             resolve(parent, args, context) {    
-                const {question, incorrectAnswers, correctAnswer} = args;  // 4
-                const incorrectAnswersArray = incorrectAnswers.split(',');
-                let idCount = quizdatas.length + 1;  // 5
-                const quizdata = {
-                    id: idCount,
-                    question: question,
-                    incorrectAnswers: incorrectAnswersArray,
-                    correctAnswer: correctAnswer
 
-                };
-                quizdatas.push(quizdata);
-                return quizdata;
+                const newQuizData = context.prisma.quizData.create({   // 2
+                    data: {
+                        question: args.question,
+                        incorrectAnswers: args.incorrectAnswers,
+                        correctAnswer:args.correctAnswer
+                    },
+                });
+                return newQuizData;
             },
-        });
+
+        })
+                
     },
 });
