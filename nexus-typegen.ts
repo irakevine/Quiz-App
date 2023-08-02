@@ -28,6 +28,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Mutation: {};
   Query: {};
   QuizData: { // root type
     correctAnswer: string; // String!
@@ -48,6 +49,9 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    post: NexusGenRootTypes['QuizData']; // QuizData!
+  }
   Query: { // field return type
     feed: NexusGenRootTypes['QuizData'][]; // [QuizData!]!
   }
@@ -60,6 +64,9 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    post: 'QuizData'
+  }
   Query: { // field return type name
     feed: 'QuizData'
   }
@@ -72,6 +79,13 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    post: { // args
+      correctAnswer: string; // String!
+      incorrectAnswers: string; // String!
+      question: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

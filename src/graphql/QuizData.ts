@@ -1,4 +1,4 @@
-import {  extendType,objectType } from "nexus";
+import {  extendType, list, nonNull,objectType, stringArg } from "nexus";
 import { NexusGenObjects } from "../../nexus-typegen";  
 
 export const QuizData = objectType({
@@ -43,4 +43,31 @@ export const QuizDataQuery = extendType({  // 2
         });
     },
 });
+export const QuizDataMutation = extendType({  // 1
+    type: "Mutation",    
+    definition(t) {
+        t.nonNull.field("post", {  // 2
+            type: "QuizData",  
+            args: {   // 3
+                question: nonNull(stringArg()),
+                incorrectAnswers:nonNull(stringArg()),
+                correctAnswer:nonNull(stringArg())
+            },
+            
+            resolve(parent, args, context) {    
+                const {question, incorrectAnswers, correctAnswer} = args;  // 4
+                const incorrectAnswersArray = incorrectAnswers.split(',');
+                let idCount = quizdatas.length + 1;  // 5
+                const quizdata = {
+                    id: idCount,
+                    question: question,
+                    incorrectAnswers: incorrectAnswersArray,
+                    correctAnswer: correctAnswer
 
+                };
+                quizdatas.push(quizdata);
+                return quizdata;
+            },
+        });
+    },
+});
