@@ -1,6 +1,6 @@
 import { objectType } from "nexus";
 
-export const Link = objectType({
+export const Question = objectType({
     name: "Question", 
     definition(t) {  
         t.nonNull.int("id");
