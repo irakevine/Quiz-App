@@ -28,7 +28,16 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Answer: { // root type
+    content: string; // String!
+    id: number; // Int!
+    isCorrect: string; // String!
+  }
   Query: {};
+  Question: { // root type
+    content: string; // String!
+    id: number; // Int!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -42,14 +51,32 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Answer: { // field return type
+    content: string; // String!
+    id: number; // Int!
+    isCorrect: string; // String!
+  }
   Query: { // field return type
     ok: boolean; // Boolean!
+  }
+  Question: { // field return type
+    content: string; // String!
+    id: number; // Int!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Answer: { // field return type name
+    content: 'String'
+    id: 'Int'
+    isCorrect: 'String'
+  }
   Query: { // field return type name
     ok: 'Boolean'
+  }
+  Question: { // field return type name
+    content: 'String'
+    id: 'Int'
   }
 }
 
