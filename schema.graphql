@@ -3,16 +3,12 @@
 
 
 type Answer {
-  content: String!
+  correctAnswer: String!
   id: Int!
-  isCorrect: String!
+  incorrectAnswers: [String!]
+  question: String!
 }
 
 type Query {
   ok: Boolean!
-}
-
-type Question {
-  content: String!
-  id: Int!
 }
