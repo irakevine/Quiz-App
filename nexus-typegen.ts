@@ -49,7 +49,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Query: { // field return type
-    ok: boolean; // Boolean!
+    feed: NexusGenRootTypes['QuizData'][]; // [QuizData!]!
   }
   QuizData: { // field return type
     correctAnswer: string; // String!
@@ -61,7 +61,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Query: { // field return type name
-    ok: 'Boolean'
+    feed: 'QuizData'
   }
   QuizData: { // field return type name
     correctAnswer: 'String'
